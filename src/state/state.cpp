@@ -13,7 +13,57 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
-  return 0;
+
+  int self_value = 0;
+  int oppn_value = 0;
+
+  auto self_board = this->board.board[this->player];
+  auto oppn_board = this->board.board[1 - this->player];
+
+  for(int i=0; i<BOARD_H; i++){
+    for(int j=0; j<BOARD_W; j++){
+      switch(self_board[i][j]){
+        case 1:
+          self_value += 1;
+          break;
+        case 2:
+          self_value += 5;
+          break;
+        case 3:
+        case 4:
+          self_value += 3;
+          break;
+        case 5:
+          self_value += 20;
+          break;
+        case 6:
+          self_value +=1000;
+          break;
+      }
+
+      switch(oppn_board[i][j]){
+        case 1:
+          oppn_value += 1;
+          break;
+        case 2:
+          oppn_value += 5;
+          break;
+        case 3:
+        case 4:
+          oppn_value += 3;
+          break;
+        case 5:
+          oppn_value += 20;
+          break;
+        case 6:
+          oppn_value +=1000;
+          break;
+      }
+    }
+  }
+
+
+  return self_value - oppn_value;
 }
 
 
