@@ -12,6 +12,59 @@
  * @return int 
  */
 int State::evaluate(){
+  int white_value = 0;
+  int black_value = 0;
+
+  auto white_board = this->board.board[0];
+  auto black_board = this->board.board[1];
+
+  for(int i=0; i<BOARD_H; i++){
+    for(int j=0; j<BOARD_W; j++){
+      switch(white_board[i][j]){
+        case 1:
+          white_value += 1;
+          break;
+        case 2:
+          white_value += 5;
+          break;
+        case 3:
+        case 4:
+          white_value += 3;
+          break;
+        case 5:
+          white_value += 20;
+          break;
+        case 6:
+          white_value +=1000;
+          break;
+      }
+
+      switch(black_board[i][j]){
+        case 1:
+          black_value += 1;
+          break;
+        case 2:
+          black_value += 5;
+          break;
+        case 3:
+        case 4:
+          black_value += 3;
+          break;
+        case 5:
+          black_value += 20;
+          break;
+        case 6:
+          black_value +=1000;
+          break;
+      }
+    }
+  }
+
+
+  return white_value - black_value;
+}
+
+int State::evaluate_base2(){
   // [TODO] design your own evaluation function
 
   int self_value = 0;

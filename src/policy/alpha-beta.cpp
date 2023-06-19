@@ -15,10 +15,16 @@
 
 using namespace std;
 
+static int cur_player;
 
 int AlphaBeta::alpha_beta_value(State *state, int depth, int alpha, int beta, bool maximizingPlayer){
     if(!depth){
-        return state->evaluate();
+        if(cur_player==0){
+            return state->evaluate();
+        }
+        else{
+            return (-1)*state->evaluate();
+        }
     }
 
     state->get_legal_actions();
@@ -60,6 +66,7 @@ int AlphaBeta::alpha_beta_value(State *state, int depth, int alpha, int beta, bo
 
 Move AlphaBeta::get_move(State *state, int depth){
     int value = -1000000;
+    cur_player = state->player;
     Move result;
     state->get_legal_actions();
     auto actions = state->legal_actions;

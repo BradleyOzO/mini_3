@@ -15,7 +15,7 @@
 
 int Minimax::minimax_value(State *state, int depth, bool maximizingPlayer){
     if(!depth){
-        return state->evaluate();
+        return state->evaluate_base2();
     }
 
     state->get_legal_actions();
