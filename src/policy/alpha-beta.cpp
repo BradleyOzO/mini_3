@@ -39,7 +39,9 @@ int AlphaBeta::alpha_beta_value(State *state, int depth, int alpha, int beta, bo
             if(vv > value){
                 value = vv;
             }
-            alpha = max(alpha, value);
+            if(value > alpha){
+                alpha = value;
+            }
             if(alpha >= beta){
                 break;
             }
@@ -55,7 +57,9 @@ int AlphaBeta::alpha_beta_value(State *state, int depth, int alpha, int beta, bo
             if(vv < value){
                 value = vv;
             }
-            beta = min(beta, value);
+            if(value < beta){
+                beta = value;
+            }
             if(beta <= alpha){
                 break;
             }
