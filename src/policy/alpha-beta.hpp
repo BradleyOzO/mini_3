@@ -8,6 +8,6 @@
  */
 class AlphaBeta{
 public:
-  static int alpha_beta_value(State *state, int depth, bool maximizingPlayer);
+  static int alpha_beta_value(State *state, int depth, int alpha, int beta, bool maximizingPlayer);
   static Move get_move(State *state, int depth);
 };

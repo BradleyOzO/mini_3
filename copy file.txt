@@ -1,16 +1,21 @@
 cd /mnt/c/Users/user/mini_3
 
 ./build/main ./build/player_random ./build/player_random
+
 ./build/main ./build/player_minimax ./build/player_random
 ./build/main ./build/player_random ./build/player_minimax
 
-./build/main ./build/player_minimax ./build/player_minimax
+./build/main ./build/player_minimax ./build/player_alpha-beta
+./build/main ./build/player_alpha-beta ./build/player_minimax
 
-./build/main ./build/player_minimax ./build/player_bettereva
-./build/main ./build/player_bettereva ./build/player_minimax
-./build/main ./build/player_random ./build/player_bettereva
+./build/main ./build/player_random ./build/player_minimax
+./build/main ./build/player_random ./build/player_alpha-beta
 
 ./build/main ./baselines/linux/baseline1 ./build/player_minimax
+./build/main ./baselines/linux/baseline1 ./build/player_alpha-beta
 
 ./build/main ./build/player_minimax ./baselines/linux/baseline2
+./build/main ./build/player_alpha-beta ./baselines/linux/baseline2
+
 ./build/main ./baselines/linux/baseline2 ./build/player_minimax
+./build/main ./baselines/linux/baseline2 ./build/player_alpha-beta
