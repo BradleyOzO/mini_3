@@ -8,8 +8,9 @@ cd /mnt/c/Users/user/mini_3
 ./build/main ./build/player_minimax ./build/player_alpha-beta
 ./build/main ./build/player_alpha-beta ./build/player_minimax
 
-./build/main ./build/player_random ./build/player_minimax
-./build/main ./build/player_random ./build/player_alpha-beta
+
+./build/main ./build/player_minimax ./baselines/linux/baseline1
+./build/main ./build/player_alpha-beta ./baselines/linux/baseline1
 
 ./build/main ./baselines/linux/baseline1 ./build/player_minimax
 ./build/main ./baselines/linux/baseline1 ./build/player_alpha-beta
@@ -19,3 +20,5 @@ cd /mnt/c/Users/user/mini_3
 
 ./build/main ./baselines/linux/baseline2 ./build/player_minimax
 ./build/main ./baselines/linux/baseline2 ./build/player_alpha-beta
+
+5*(10+400) + 50+20 + 30+20 + 30+20 + 200+40 
