@@ -11,6 +11,63 @@
  * 
  * @return int 
  */
+
+const int rook_pos[2][6][5] = { { {0  ,0  ,0  ,0  ,0  },
+                                  {20 ,20 ,20 ,20 ,20 },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  } },
+                                
+                                { {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {20 ,20 ,20 ,20 ,20 },
+                                  {0  ,0  ,0  ,0  ,0  } } };
+
+const int pawn_pos[2][6][5] = { { {400,400,400,400,400},
+                                  {20 ,20 ,20 ,20 ,20 },
+                                  {0  ,20 ,20 ,0  ,0  },
+                                  {0  ,20 ,20 ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  } },
+
+                                { {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,20 ,20 ,0  },
+                                  {0  ,0  ,20 ,20 ,0  },
+                                  {20 ,20 ,20 ,20 ,20 },
+                                  {400,400,400,400,400} } };
+
+const int bish_pos[2][6][5] = { { {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {20 ,0  ,20 ,0  ,20 },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  } },
+                                
+                                { {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {20 ,0  ,20 ,0  ,20 },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  },
+                                  {0  ,0  ,0  ,0  ,0  } } };
+
+const int knight_pos[2][6][5] = { { {0  ,0  ,0  ,0  ,0  },
+                                    {0  ,0  ,0  ,0  ,0  },
+                                    {0  ,10 ,0  ,10 ,0  },
+                                    {0  ,10 ,20 ,10 ,0  },
+                                    {0  ,0  ,0  ,0  ,0  },
+                                    {0  ,0  ,0  ,0  ,0  } },
+                                  
+                                  { {0  ,0  ,0  ,0  ,0  },
+                                    {0  ,0  ,0  ,0  ,0  },
+                                    {0  ,10 ,20 ,10 ,0  },
+                                    {0  ,10 ,0  ,10 ,0  },
+                                    {0  ,0  ,0  ,0  ,0  },
+                                    {0  ,0  ,0  ,0  ,0  } } };
+
 int State::evaluate(){
   int white_value = 0;
   int black_value = 0;
@@ -22,40 +79,56 @@ int State::evaluate(){
     for(int j=0; j<BOARD_W; j++){
       switch(white_board[i][j]){
         case 1:
-          white_value += 1;
+          white_value += (10 + pawn_pos[0][i][j]);
           break;
         case 2:
-          white_value += 5;
+          white_value += (50 + rook_pos[0][i][j]) ;
           break;
         case 3:
+          white_value += (30 + knight_pos[0][i][j]);
+          break;
         case 4:
-          white_value += 3;
+          white_value += (30 + bish_pos[0][i][j]);
           break;
         case 5:
-          white_value += 20;
+          white_value += (200 + bish_pos[0][i][j] + rook_pos[0][i][j]);
           break;
         case 6:
-          white_value +=1000;
+          white_value +=20000;
           break;
+      }
+      if(white_board[i+1][j+1]==1){
+        white_value += 20;
+      }
+      if(white_board[i+1][j-1]==1){
+        white_value += 20;
       }
 
       switch(black_board[i][j]){
         case 1:
-          black_value += 1;
+          black_value += (10 + pawn_pos[1][i][j]);
           break;
         case 2:
-          black_value += 5;
+          black_value += (50 + rook_pos[1][i][j]);
           break;
         case 3:
+          black_value += (30 + knight_pos[1][i][j]);
+          break;
         case 4:
-          black_value += 3;
+          black_value += (30 + bish_pos[1][i][j]);
           break;
         case 5:
-          black_value += 20;
+          black_value += (200 + bish_pos[1][i][j] + rook_pos[1][i][j]);
           break;
         case 6:
-          black_value +=1000;
+          black_value +=20000;
           break;
+      }
+      if(black_board[i-1][j-1]==1){
+        black_value += 20;
+      }
+      if(black_board[i-1][j+1]==1){
+        black_value += 20;
       }
     }
   }
@@ -310,7 +383,7 @@ void State::get_legal_actions(){
       }
     }
   }
-  std::cout << "\n";
+  //std::cout << "\n";
   this->legal_actions = all_actions;
 }
 

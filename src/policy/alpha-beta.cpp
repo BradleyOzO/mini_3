@@ -84,6 +84,6 @@ Move AlphaBeta::get_move(State *state, int depth){
             result = actions[i];
         }
     }
-
+    
     return result;
 }
