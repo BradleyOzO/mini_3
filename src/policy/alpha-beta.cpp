@@ -18,6 +18,18 @@ using namespace std;
 static int cur_player;
 
 int AlphaBeta::alpha_beta_value(State *state, int depth, int alpha, int beta, bool maximizingPlayer){
+    
+    state->get_legal_actions();
+
+    if(state->game_state == WIN){
+        if(state->player == cur_player){
+            return 50000;
+        }
+        else{
+            return -50000;
+        }
+    }
+    
     if(!depth){
         if(cur_player==0){
             return state->evaluate();
@@ -27,7 +39,7 @@ int AlphaBeta::alpha_beta_value(State *state, int depth, int alpha, int beta, bo
         }
     }
 
-    state->get_legal_actions();
+
     auto actions = state->legal_actions;
     int size = actions.size();
     int value;
